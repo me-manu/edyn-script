@@ -103,5 +103,5 @@
 // ── Chapters ────────────────────────────────────────────────────────
 #include "chapters/01-maxwells-equations.typ"
 #include "chapters/02-maxwells-equations-in-matter.typ"
-// #include "chapters/03-electromagnetic-waves.typ"
+#include "chapters/03-electromagnetic-waves.typ"
 // ...
