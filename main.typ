@@ -40,6 +40,11 @@
 
 #show link: set text(fill: blue.darken(20%))
 
+#show heading.where(level: 1): it => {
+  pagebreak(weak: true)
+  it
+}
+
 // ── Title page ──────────────────────────────────────────────────────
 #align(center + horizon)[
   #text(size: 28pt, weight: "bold")[Electrodynamics]
