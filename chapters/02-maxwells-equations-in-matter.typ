@@ -60,7 +60,7 @@ A convenient measure is the *polarization*:
 
 === Bound Charges
 
-We can also understand polarization in terms of _bound charges_ or the bound charge density $rho_b$
+We can also understand polarization in terms of _bound charges_ or the bound charge density $rho_b$.
 
 When the induced dipoles all align, the interior charges cancel in pairs, as depected in Figure @fig:bound. The net
 effect is a surface charge — what we call _bound charge_.
@@ -80,11 +80,13 @@ through
 ]
 
 The total charge density is
-$ rho = rho_b + rho_f $
+#key-box[
+  $ rho = rho_b + rho_f $
+]
 where $rho_f$ is the _free_ charge density that we can manipulate in the lab.
 
 #supplement-box(title: [Example on Polarzation])[
-  Imagine a sphere with a uniform distribution of positive and negative charges, as shown in Figure @fig:ex-polarization.
+  Imagine a sphere with a uniform distribution of positive and negative charges, as shown in @fig:ex-polarization.
 
   #figure(
     image("/figures/ex-polarization.pdf", width: 50%),
@@ -95,7 +97,7 @@ where $rho_f$ is the _free_ charge density that we can manipulate in the lab.
 
   The electric field in the overlaping region is given by 
   $
-    vb(E)_{"overlap"} = - 1 / (4 pi epsilon_0) (q dot vb(d)) / R^3,
+    vb(E)_("overlap") = - 1 / (4 pi epsilon_0) (q dot vb(d)) / R^3,
   $
   where $R$ is the radius of the sphere (believe me or check in Griffiths Ch. 2 and 4).
   
@@ -107,7 +109,7 @@ where $rho_f$ is the _free_ charge density that we can manipulate in the lab.
   
   which is uniform accross the sphere. Plugging in:
   $
-    => vb(E)_{"overlap"} = - 1 / (3 epsilon_0) vb(P).
+    => vb(E)_("overlap") = - 1 / (3 epsilon_0) vb(P).
   $
 
   Outside the sphere, for distances $|vb(r)| >> |vb(d)|$ we have a dipole with potential 
@@ -115,7 +117,7 @@ where $rho_f$ is the _free_ charge density that we can manipulate in the lab.
     U = 1 / (4 pi epsilon_0) (vb(p) dot vb(r)) / (|vb(r)|^3)
   $
 
-  The total electric field from the uniform polarization is shown in Figure @fig:uniform-polarization. 
+  The total electric field is then the sum of the field that caused the polarization in the first place and the electric field produced by the polarizatio, i.e. the shifting of the spheres. The result is shown in @fig:uniform-polarization. 
 
   #figure(
     image("/figures/uniform-polarization.pdf", width: 50%),
@@ -173,26 +175,28 @@ We now ask the analogous question for magnetic fields.
 Again, it depends on the type of material.
 
 Some materials, like iron, become magnets themselves and can even stay
-magnetized once the external field is switched off. Such substances (iron,
+magnetized once the external field is switched off. Such substances (e.g., iron,
 nickel, cobalt) are called *ferromagnets* — we will not discuss them further
 in this course.
 
 But other materials are also affected by external fields, and are divided
 into:
 - *Paramagnets*: acquire a magnetization _parallel_ to $vb(B)$.
-- *Diamagnets*: acquire a magnetization _antiparallel_ to $vb(B)$, though the
-  magnetization is much smaller than in ferromagnets (you can't pick up wood
-  with a magnet).
+- *Diamagnets*: acquire a magnetization _antiparallel_ to $vb(B)$. 
+
+Compared to ferromagnets, the magnetization is much smaller (you can't pick up wood with a magnet).
+
+Let's look at paramagnets and diamagnets more closely.
 
 === Microscopic Origin: Magnetic Dipoles
 
-Let's look at paramagnets and diamagnets more closely. In fact, all magnetic
+In fact, all magnetic
 phenomena are caused by tiny currents:
 - electrons that have _spin_ (imagine them as spinning charged spheres, even
   though this picture is not correct in a quantum-mechanical sense),
 - electrons that _orbit_ around the nucleus.
 
-Both phenomena generate current loops that we can treat as magnetic dipoles, sketched in Figure @fig:magnetic-dipole. The dipole moment is given by
+Both phenomena generate current loops that we can treat as magnetic dipoles, sketched in @fig:magnetic-dipole. The dipole moment is given by
 
 #key-box[
   #align(center)[
@@ -214,7 +218,7 @@ right-hand rule).
 
 Without an external field, these dipoles point in random directions. Once you
 apply a field, the dipoles experience a torque that will line them up
-parallel to the field — this torque accounts for paramagnetism.
+parallel to the field. This torque accounts for paramagnetism.
 
 You might expect this to be a universal phenomenon, since every spinning
 electron constitutes a dipole. 
@@ -234,7 +238,7 @@ fluctuations compete with the ordering of the dipoles.
 Orbits of electrons also constitute tiny current loops, but these are
 randomly oriented. In the presence of a field, an orbiting electron
 experiences an additional Lorentz force that will either speed it up or slow
-it down. This changes its dipole moment _antiparallel_ to the field — this is
+it down. This changes its dipole moment _antiparallel_ to the field.  This is
 diamagnetism.
 
 Diamagnetism is typically weaker than paramagnetism, and mainly observed in
@@ -437,33 +441,6 @@ Alternatively, one can stick with the _microscopic_ Maxwell's equations
 (@eq:maxwell) in terms of $vb(E)$ and $vb(B)$ only, as long as the sources
 $rho$ and $vb(J)$ include _all_ charges and currents — free and bound.
 
-#supplement-box(title: [Interlude: Connection to research — Axions])[
-   Axions could solve two pressing problems in particle physics and cosmology:
-
-  - The nature of _dark matter_
-  - The non-observation of an electric dipole moment of the neutron (the _strong CP
-    problem_)
-
-  If axions existed, they could couple to photons in the presence of $vb(B)$-fields.
-  If axions are dark matter, they would surround us and _modify Maxwell's equations_.
-  Gauss's law would get an additional source term from the spatial gradient of the
-  axion field:
-  $ rho -> rho - g_(a gamma) / (mu_0 c) vb(B) dot grad a $
-  where $g_{a gamma}$ is the axion-photon coupling constant and $a$ the axion field.
-  Ampère's law similarly gets modified:
-  $ vb(J)_f + pdv(vb(D), t) -> vb(J)_f + pdv(vb(D), t) + g_(a gamma) / (mu_0 c) [pdv(a, t) vb(B) - vb(E) times grad a ] $
-  Even without charges and currents, you could generate electromagnetic fields
-  through axion dark matter!
-  Typically, the spatial variations of the axion field are negligible,
-  so the gradient term can be dropped leaving the axion current as the new dominating source term, 
-
-  $
-    vb(J)_a = g_(a gamma) / (mu_0 c) pdv(a, t) vb(B).
-  $
-
-  The axion field oscillates at a frequency $omega_a = m_a c^2 / hbar$ set by the axion mass $m_a$, which is unknown but expected to be very small. This leads to an oscillating axion current in the presence of a static magnetic field, which is the basis for many axion dark matter searches also here at SDU.
-]
-
 
 == Linear Media and Susceptibility
 
@@ -490,6 +467,34 @@ $ vb(P) = epsilon_0 chi_e vb(E), quad vb(M) = chi_m vb(H). $
 - For *isotropic* materials, $epsilon$ and $mu$ are scalars; for
   *anisotropic* materials (like crystals), they are tensors.
 
+#supplement-box(title: [Interlude: Connection to my research on axions])[
+   Axions could solve two pressing problems in particle physics and cosmology:
+
+  - The nature of _dark matter_
+  - The non-observation of an electric dipole moment of the neutron (the _strong CP
+    problem_)
+
+  If axions existed, they could couple to photons in the presence of $vb(B)$-fields.
+  If axions are dark matter, they would surround us and _modify Maxwell's equations_.
+  Gauss's law would get an additional source term from the spatial gradient of the
+  axion field:
+  $ rho -> rho - g_(a gamma) / (mu_0 c) vb(B) dot grad a $
+  where $g_(a gamma)$ is the axion-photon coupling constant and $a$ the axion field.
+  Ampère's law similarly gets modified:
+  $ vb(J)_f + pdv(vb(D), t) -> vb(J)_f + pdv(vb(D), t) + g_(a gamma) / (mu_0 c) [pdv(a, t) vb(B) - vb(E) times grad a ] $
+  Even without charges and currents, you could generate electromagnetic fields
+  through axion dark matter!
+  Typically, the spatial variations of the axion field are negligible,
+  so the gradient term can be dropped leaving the axion current as the new dominating source term, 
+
+  $
+    vb(J)_a = g_(a gamma) / (mu_0 c) pdv(a, t) vb(B).
+  $
+
+  The axion field oscillates at a frequency $omega_a = m_a c^2 / hbar$ set by the axion mass $m_a$, which is unknown but expected to be very small. This leads to an oscillating axion current in the presence of a static magnetic field, which is the basis for many axion dark matter searches also here at SDU.
+]
+
+
 == Boundary Conditions <sec:boundary-conditions>
 
 Starting from Maxwell's equations in matter, we now ask: what happens at the
@@ -499,8 +504,7 @@ general boundary conditions that the electric and magnetic fields must
 fulfil.
 
 We will soon see that electromagnetic fields are propagating waves, and that
-these boundary conditions lead to reflection, transmission, and refraction —
-e.g. light passing from air into glass or water.
+these boundary conditions lead to reflection, transmission, and refraction (e.g. light passing from air into glass or water).
 
 In general, $vb(E)$, $vb(D)$, $vb(B)$, and $vb(H)$ are all discontinuous at
 the boundary between two media.
@@ -515,7 +519,7 @@ $ integral_V (div vb(D)) dd(V) = integral.cont_S vb(D) dot dd(vb(a)) = Q_"f, enc
 
 where $Q_"f, enc"$ is the total free charge enclosed by the surface $S$.
 This holds for _any_ closed surface — including a thin "pillbox" straddling
-the boundary between the two media, see Figure @fig:pillbox.
+the boundary between the two media, see @fig:pillbox.
 
 #figure(
   image("/figures/boundary-perp.pdf", width: 50%),
@@ -596,7 +600,7 @@ $
 where $vu(n) times Delta vb(l)$ is the vector perpendicular to the loop, so that
 $vb(K)_f dot (vu(n) times Delta vb(l))$ picks out the component of $vb(K)_f$
 passing through the loop. Using the cyclic property of the scalar triple
-product, $vb(A) dot (vb(B) times vb(C)) = vb(C) dot (vb(A) times vb(B))$:
+product, $vb(A) dot (vb(B) times vb(C)) = vb(B) dot (vb(C) times vb(A))= vb(C) dot (vb(A) times vb(B))$:
 $ I_"f, enc" = Delta vb(l) dot (vb(K)_f times vu(n)), $
 so that
 $ vb(H)_1 dot Delta vb(l) - vb(H)_2 dot Delta vb(l) = I_"f, enc" = Delta vb(l) dot mark(vb(K)_f times vu(n), tag: #<surf-current>). $
@@ -608,15 +612,15 @@ $ vb(H)_1 dot Delta vb(l) - vb(H)_2 dot Delta vb(l) = I_"f, enc" = Delta vb(l) d
     {
       import cetz.draw: *
       cetz.decorations.flat-brace(
-        (rel: (0, -0.2), to: "surf-current.south-west"),
-        (rel: (0, -0.2), to: "surf-current.south-east"),
+        (rel: (0, -1.2), to: "surf-current.south-west"),
+        (rel: (0, -1.2), to: "surf-current.south-east"),
         flip: true,
         name: "surf-brace",
         stroke: blue,
       )
       content(
         (rel: (0, -0.5), to: "surf-brace.south"),
-        anchor: "north",
+        anchor: "south",
         name: "surf-label",
         text(size: 9pt, fill: blue)[free surface current density],
       )
