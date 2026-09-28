@@ -41,8 +41,8 @@ The solution is any function of the form
 
 $g(z - v t)$ is a wave traveling to the _right_: the displacement found at
 $z$ at time $t$ is found again at $z + v Delta t$ at the later time
-$t + Delta t$, #text(fill: rgb("#008080"))[see @fig:wave-pulse]. Likewise,
-$h(z + v t)$ is a wave traveling to the _left_.
+$t + Delta t$, see @fig:wave-pulse.
+Likewise, $h(z + v t)$ is a wave traveling to the _left_.
 
 #figure(
   include "/figures/wave-pulse-translation.typ",
@@ -54,7 +54,7 @@ $h(z + v t)$ is a wave traveling to the _left_.
 
 === Sinusoidal Waves
 
-A particularly important special case is the sinusoidal wave:
+A particularly important special case is the *sinusoidal wave*:
 
 #block(breakable: false)[
   #v(0.5em)
@@ -119,12 +119,8 @@ write a wave in complex notation:
 ]
 This notation is very useful for solving the wave equation.
 
-#supplement-box(title: [The superposition principle])[
-  The wave equation @eq:wave-equation is _linear_, so that the sum of two
-  solutions is also a solution. This is the *superposition principle*, and
-  it is essential for combining waves (e.g. via Fourier analysis) and for
-  the interference phenomena we will encounter later in the course.
-]
+The wave equation @eq:wave-equation is _linear_, so that the sum of two
+solutions is also a solution. This is the *superposition principle*, and it is essential for combining waves (e.g. via Fourier analysis).
 
 == Waves in 3D
 
@@ -133,7 +129,7 @@ If we take the $z$-direction as the direction of propagation, we can have:
 
 + *Longitudinal waves*: oscillation in the $z$-direction. Example: sound
   waves, as density fluctuations in a medium,
-  #text(fill: rgb("#008080"))[see @fig:longitudinal-wave].
+  see @fig:longitudinal-wave.
 + *Transverse waves*: oscillations in directions orthogonal to $z$.
 
 #figure(
@@ -149,10 +145,10 @@ If we take the $z$-direction as the direction of propagation, we can have:
 Transverse waves in 3D have *two independent states of polarization*,
 because there are two directions orthogonal to the propagation direction.
 
-The *polarization vector* $vu(u)$ (with $vu(u) dot vu(u) = 1$) denotes the
-plane of oscillation, and $vu(u) dot vu(z) = 0$ for transverse waves.
+The *polarization vector* $vu(n)$ (with $vu(n) dot vu(n) = 1$) denotes the
+plane of oscillation, and $vu(n) dot vu(z) = 0$ for transverse waves.
 @fig:transverse-polarization shows two examples for fixed time $t$, with
-$vu(u) = vu(x)$ and $vu(u) = vu(y)$ respectively.
+$vu(n) = vu(x)$ and $vu(n) = vu(y)$ respectively.
 
 #figure(
   include "/figures/transverse-polarization.typ",
@@ -166,22 +162,29 @@ $vu(u) = vu(x)$ and $vu(u) = vu(y)$ respectively.
 In general, for *linear polarization*:
 
 #key-box[
-  $ vu(u) = cos theta thin vu(x) + sin theta thin vu(y) $ <eq:linear-polarization>
+  $ vu(n) = cos theta thin vu(x) + sin theta thin vu(y) $ <eq:linear-polarization>
 ]
 with *polarization angle* $theta$.
 
 #supplement-box(title: [Circular polarization])[
-  $vu(u)$ can also depend on time. If it rotates clockwise around the $vu(z)$
+  $vu(n)$ can also depend on time. If it rotates clockwise around the $vu(z)$
   axis (as seen looking toward the source), we speak of *right circular
   polarization*; if it rotates counter-clockwise, of *left circular
-  polarization*.
+  polarization*, see #text(fill: rgb("#008080"))[the slides for an example animation].
 ]
 
 == Electromagnetic Waves
 
-Recall Maxwell's equations in vacuum, @eq:maxwell,
-#text(fill: rgb("#008080"))[see the slides]. What are the consequences of
-these equations?
+Recall Maxwell's equations in vacuum, @eq:maxwell:
+
+  $ 
+    div vb(E) &= rho / epsilon_0 & "(i)" \
+    div vb(B) &= 0 & "(ii)" \
+    curl vb(E) &= -pdv(vb(B), t) & "(iii)" \
+    curl vb(B) &= mu_0 vb(J) + + mu_0 epsilon_0 pdv(vb(E), t) & "(iv)" 
+  $
+
+What are the consequences of these equations?
 
 Suppose that you switch on a current $vb(J)(t)$:
 - $vb(J)$ will vary in time,
@@ -202,45 +205,15 @@ $
 where in the last step we exchanged the order of the spatial curl and
 temporal derivative (coordinates do not depend on time), and then used (iv).
 
-What is the left-hand side? You can show that
+What is the left-hand side? In @sec:curl-curl we derive the vector calculus identity
+ $
+    [curl (curl vb(E))]
+    = [grad (div vb(E)) - nabla^2 vb(E)], 
+$
 
-#advanced-box(title: [The "BAC $-$ CAB" rule for the curl of a curl])[
-  Similarly to the vector identity
-  $ vb(A) times (vb(B) times vb(C)) = vb(B) (vb(A) dot vb(C)) - vb(C) (vb(A) dot vb(B)) $
-  ("BAC $-$ CAB"), one can show an analogous identity for the differential
-  operator $vb(nabla)$:
-  $ curl (curl vb(C)) = grad (div vb(C)) - nabla^2 vb(C), $
-  where $nabla^2$ is the *Laplacian operator*,
-  $ nabla^2 f = partial_x^2 f + partial_y^2 f + partial_z^2 f = sum_i partial_i^2 f equiv partial_i partial_i f, $
-  acting on each component of $vb(C)$ separately.
+where $nabla^2 = partial^2 / (partial x^2) + partial^2 / (partial y^2) + partial^2 / (partial z^2)$ is the *Laplacian operator*, acting on all three components of $vb(E)$ separately.
 
-  *Proof (in Einstein notation):* look at the $i$-th component,
-  $
-    [vb(A) times (vb(B) times vb(C))]_i
-    = epsilon_(i j k) A_j (vb(B) times vb(C))_k
-    = epsilon_(i j k) A_j epsilon_(k l m) B_l C_m.
-  $
-  Using the cyclic property $epsilon_(i j k) = epsilon_(k i j)$ and the
-  identity $epsilon_(k i j) epsilon_(k l m) = delta_(i l) delta_(j m) - delta_(i m) delta_(j l)$
-  (which follows from the definition of $epsilon_(i j k)$, in the same way
-  as in the note on the Levi-Civita tensor in Chapter 1), this becomes
-  $
-    epsilon_(i j k) A_j epsilon_(k l m) B_l C_m
-    &= (delta_(i l) delta_(j m) - delta_(i m) delta_(j l)) A_j B_l C_m \
-    &= B_i (A_j C_j) - C_i (A_j B_j)
-    = [vb(B) (vb(A) dot vb(C)) - vb(C) (vb(A) dot vb(B))]_i. checkmark
-  $
-  The same computation with $vb(A) = vb(B) = vb(nabla)$ (so that
-  $A_j -> partial_j$) and $vb(C) -> vb(C)$ gives
-  $
-    [curl (curl vb(C))]_i
-    &= epsilon_(i j k) partial_j epsilon_(k l m) partial_l C_m \
-    &= partial_i (partial_j C_j) - partial_j partial_j C_i
-    = [grad (div vb(C)) - nabla^2 vb(C)]_i. checkmark
-  $
-]
-
-Using this identity with $vb(C) = vb(E)$, and $div vb(E) = rho \/ epsilon_0$
+Using this identity and $div vb(E) = rho \/ epsilon_0$
 from (i):
 $
   grad (rho / epsilon_0) - nabla^2 vb(E) = -mu_0 pdv(vb(J), t) - mu_0 epsilon_0 pdv(vb(E), t, 2).
@@ -272,8 +245,7 @@ Rearranging:
 
 We have transformed Maxwell's equations into decoupled second-order
 differential equations for regions with charges and currents. (They are
-not _always_ decoupled — e.g. Ohm's law $vb(J) = sigma vb(E)$ couples them
-back together, as is relevant for conductors like radio antennas or the
+not _always_ decoupled — e.g. Ohm's law $vb(J) = sigma vb(E)$ couples them back together, as is relevant for conductors like radio antennas or the
 plasma in the sun's corona.)
 
 == Electromagnetic Waves in Vacuum
@@ -302,20 +274,17 @@ $mu_0$ and $epsilon_0$ can be measured in the lab, and we find
 $c approx 2.9979 times 10^8 "m/s"$ — the speed of light!
 (Check yourself that $1 \/ sqrt(mu_0 epsilon_0)$ indeed has units of m/s.)
 
-#supplement-box(title: [Unifying electricity, magnetism, and light])[
-  We have stumbled onto the nature of light: it is, in fact, a disturbance
-  in the $vb(E)$ and $vb(B)$ fields. With this, Maxwell's equations unify
-  electricity, magnetism, _and_ light — one of the great triumphs of 19th
-  century physics.
-]
+We have stumbled onto the nature of light: it is, in fact, a disturbance
+in the $vb(E)$ and $vb(B)$ fields. With this, Maxwell's equations unify
+electricity, magnetism, _and_ light.
+This is one of the great triumphs of 19th
+century physics.
 
-#supplement-box(title: [Note])[
-  Maxwell's equations are 8 equations (1 from (i), 1 from (ii), 3 each from
-  (iii) and (iv)), but @eq:vacuum-wave-eqs only give us 6 (3 components
-  each for $vb(E)$ and $vb(B)$). Not every solution of the wave equation is
-  a solution of Maxwell's equations — it must fulfill some extra
-  constraints, as we will see next.
-]
+Note that Maxwell's equations are 8 equations (1 from (i), 1 from (ii), 3 each from
+(iii) and (iv)), but @eq:vacuum-wave-eqs only give us 6 (3 components
+each for $vb(E)$ and $vb(B)$). Not every solution of the wave equation is
+a solution of Maxwell's equations — it must fulfill some extra
+constraints, as we will see next.
 
 === Plane Wave Solutions
 
@@ -354,12 +323,12 @@ dispersion relation $k = omega \/ c$, we have for monochromatic plane waves:
 
 #key-box[
   $
-    vb(E)(vb(r), t) &= E_0 e^(i (vb(k) dot vb(r) - omega t)) vu(u), \
-    vb(B)(vb(r), t) &= 1/c E_0 e^(i (vb(k) dot vb(r) - omega t)) (vu(k) times vu(u))
+    vb(E)(vb(r), t) &= E_0 e^(i (vb(k) dot vb(r) - omega t)) vu(n), \
+    vb(B)(vb(r), t) &= 1/c E_0 e^(i (vb(k) dot vb(r) - omega t)) (vu(k) times vu(n))
     = 1/c (vu(k) times vb(E))
   $ <eq:general-plane-wave>
 ]
-with $vu(u) dot vu(k) = 0$.
+with $vu(n) dot vu(k) = 0$.
 
 == Energy and Momentum in EM Waves
 
@@ -368,7 +337,7 @@ The energy per unit volume stored in the fields is
 #key-box[
   $ u = 1/2 (epsilon_0 E^2 + 1/mu_0 B^2) $ <eq:energy-density>
 ]
-(we will derive this later — for now, check for yourself through
+(check for yourself through
 dimensional analysis that the units work out).
 
 From @eq:B-from-E we see that $B^2 = E^2 \/ c^2$, so that
@@ -400,17 +369,17 @@ $ vb(g) = 1/c^2 vb(S), quad |vb(g)| = u / c. $
 We therefore consider the *time-averaged energy density* over one period
 $T = 2 pi \/ omega$:
 
-#exercise-box[
-  Show that
-  $ lr(〈 u 〉) = epsilon_0 E_0^2 / T integral_0^T cos^2(k z - omega t + delta) dd(t) $
-  (we will look at time averages like this in the tutorials).
-]
+$ 
+lr(〈 u 〉) = epsilon_0 E_0^2 / T integral_0^T cos^2(k z - omega t + delta) dd(t) 
+$
+(we will look at time averages like this in the tutorials).
+
+Since the time average of $cos^2$ over a full period is $1\/2$, we find the result
 
 #result-box[
   $ lr(〈 u 〉) = 1/2 epsilon_0 E_0^2 $ <eq:time-avg-energy>
 ]
-since the time average of $cos^2$ over a full period is $1\/2$. This
-immediately gives the time averages for $vb(S)$ and $vb(g)$ as well.
+This immediately gives the time averages for $vb(S)$ and $vb(g)$ as well.
 
 #supplement-box(title: [A historical puzzle])[
   Note that the average energy density is _independent of frequency_. This
@@ -483,4 +452,43 @@ $
   materials like glass or water are transparent: the wave that emerges is
   still a single coherent wave at the original frequency, just slowed
   down.
+]
+
+== Deriving the curl of a curl identity
+<sec:curl-curl> 
+
+#advanced-box(title: [The "BAC $-$ CAB" rule for the curl of a curl])[
+  Similarly to the vector identity
+  $ vb(A) times (vb(B) times vb(C)) = vb(B) (vb(A) dot vb(C)) - vb(C) (vb(A) dot vb(B)) $
+  ("BAC $-$ CAB"), one can show an analogous identity for the differential
+  operator $vb(nabla)$:
+  $ curl (curl vb(C)) = grad (div vb(C)) - nabla^2 vb(C), $
+  where $nabla^2$ is the *Laplacian operator*,
+  $ nabla^2 f = partial_x^2 f + partial_y^2 f + partial_z^2 f = sum_i partial_i^2 f equiv partial_i partial_i f, $
+  acting on each component of $vb(C)$ separately.
+
+  *Proof (in Einstein notation):* look at the $i$-th component,
+  $
+    [vb(A) times (vb(B) times vb(C))]_i
+    = epsilon_(i j k) A_j (vb(B) times vb(C))_k
+    = epsilon_(i j k) A_j epsilon_(k l m) B_l C_m.
+  $
+  Using the cyclic property $epsilon_(i j k) = epsilon_(k i j)$ and the
+  identity $epsilon_(k i j) epsilon_(k l m) = delta_(i l) delta_(j m) - delta_(i m) delta_(j l)$
+  (which follows from the definition of $epsilon_(i j k)$, in the same way
+  as in the note on the Levi-Civita tensor in Chapter 1), this becomes
+  $
+    epsilon_(i j k) A_j epsilon_(k l m) B_l C_m
+    &= (delta_(i l) delta_(j m) - delta_(i m) delta_(j l)) A_j B_l C_m \
+    &= B_i (A_j C_j) - C_i (A_j B_j)
+    = [vb(B) (vb(A) dot vb(C)) - vb(C) (vb(A) dot vb(B))]_i. checkmark
+  $
+  The same computation with $vb(A) = vb(B) = vb(nabla)$ (so that
+  $A_j -> partial_j$) and $vb(C) -> vb(C)$ gives
+  $
+    [curl (curl vb(C))]_i
+    &= epsilon_(i j k) partial_j epsilon_(k l m) partial_l C_m \
+    &= partial_i (partial_j C_j) - partial_j partial_j C_i
+    = [grad (div vb(C)) - nabla^2 vb(C)]_i. checkmark
+  $
 ]

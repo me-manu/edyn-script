@@ -644,11 +644,12 @@ $ 1/mu_1 vb(B)_1^parallel = 1/mu_2 vb(B)_2^parallel. $ <eq:H-par-linear>
   boundary between two media are related by:
 
   $
-    D_1^perp - D_2^perp &= sigma_f & "(perpendicular)" \
-    B_1^perp &= B_2^perp & "(perpendicular)" \
-    vb(E)_1^parallel &= vb(E)_2^parallel & "(parallel)" \
-    vb(H)_1^parallel - vb(H)_2^parallel &= vb(K)_f times vu(n) & "(parallel)"
+    D_1^perp - D_2^perp &= sigma_f & "(i, perpendicular)" \
+    B_1^perp &= B_2^perp & "(ii, perpendicular)" \
+    vb(E)_1^parallel &= vb(E)_2^parallel & "(iii, parallel)" \
+    vb(H)_1^parallel - vb(H)_2^parallel &= vb(K)_f times vu(n) & "(iv, parallel)"
   $
+  <eq:boundary>
 
   For *linear media* (@eq:lin-media) with no free surface charge or current
   ($sigma_f = 0$, $vb(K)_f = vb(0)$), the perpendicular and parallel
@@ -657,13 +658,131 @@ $ 1/mu_1 vb(B)_1^parallel = 1/mu_2 vb(B)_2^parallel. $ <eq:H-par-linear>
   @eq:H-par-linear respectively):
 
   $
-    epsilon_1 E_1^perp &= epsilon_2 E_2^perp & "(perpendicular)" \
-    B_1^perp &= B_2^perp & "(perpendicular)" \
-    vb(E)_1^parallel &= vb(E)_2^parallel & "(parallel)" \
-    1/mu_1 vb(B)_1^parallel &= 1/mu_2 vb(B)_2^parallel & "(parallel)"
+    epsilon_1 E_1^perp &= epsilon_2 E_2^perp & "(i, perpendicular)" \
+    B_1^perp &= B_2^perp & "(ii, perpendicular)" \
+    vb(E)_1^parallel &= vb(E)_2^parallel & "(iii, parallel)" \
+    1/mu_1 vb(B)_1^parallel &= 1/mu_2 vb(B)_2^parallel & "(iv, parallel)"
   $
+  <eq:boundary-linear>
 
   Note that $vb(B)^perp$ and $vb(E)^parallel$ are always continuous — they
-  don't depend on the medium at all. 
+  don't depend on the medium at all.
+]
+
+== Worked Example: Capacitor and Coil
+
+To bring together everything from this chapter, consider two simple circuits
+— a battery-driven capacitor and a DC-driven coil — first in vacuum, then
+with a dielectric or diamagnetic material inserted.
+
+#exercise-box[
+  #figure(
+    include "/figures/capacitor-circuit.typ",
+    caption: [
+      A battery charges a parallel-plate capacitor with a dielectric slab
+      (e.g. glass) between the plates.
+    ],
+  ) <fig:capacitor-circuit>
+
+  *1. Vacuum case.* Ignore the dielectric slab in @fig:capacitor-circuit for
+  now. How would you determine the electric displacement $vb(D)$ between
+  the plates? Which formula/equation would you use? How are $vb(D)$ and
+  $vb(E)$ connected in this case?
+
+  *2. Adding a dielectric.* Now insert a dielectric — e.g. a glass cell —
+  between the plates, as shown in @fig:capacitor-circuit. What happens to
+  the glass at the microscopic level? How would you determine the
+  polarization $vb(P)$ and the field $vb(E)$ in this case?
+
+  #figure(
+    include "/figures/coil-circuit.typ",
+    caption: [
+      A DC source drives a current through a coil with a material core
+      (e.g. glass).
+    ],
+  ) <fig:coil-circuit>
+
+  *3. Vacuum case.* Ignore the material core in @fig:coil-circuit for now.
+  Consider the coil connected to a DC source. After the current has been
+  ramped up and is constant, a magnetic field has been generated. Which
+  field is it exactly, and from which equation would you determine it?
+
+  *4. Adding a material core.* Now insert a glass cell inside the coil, as
+  shown in @fig:coil-circuit. What happens to the glass at the
+  microscopic level?
+
+  *5. DC $arrow.r$ AC.* What happens when we change the power source from DC
+  to AC?
+]
+
+#supplement-box(title: [Qualitative answers])[
+  *1. Capacitor in vacuum.* $vb(D)$ is fixed directly by the *free* charge
+  on the plates via Gauss's law for $vb(D)$, (i) in @eq:maxwell-matter —
+  exactly the pillbox argument from @sec:boundary-conditions. For plates
+  much larger than their separation, symmetry gives a uniform $vb(D)$
+  perpendicular to the plates, so a pillbox straddling one plate
+  (@eq:D-perp) gives $D = sigma_f$. In vacuum, $vb(D) = epsilon_0 vb(E)$,
+  so $vb(D)$ and $vb(E)$ are really the same field, just in different
+  units.
+
+  *2. Capacitor with a dielectric.* In the field, the bound electrons and
+  nuclei in the glass shift slightly relative to each other, producing
+  small induced dipole moments $vb(p) = alpha vb(E)$ (the same
+  polarizability relation from the start of this chapter) that add up to a
+  macroscopic polarization $vb(P)$, aligned with $vb(E)$. As in @fig:bound,
+  the aligned dipoles cancel in the bulk of the glass but leave behind an
+  uncompensated bound surface charge $sigma_b = vb(P) dot vu(n)$: negative
+  on the face touching the $+$ plate and positive on the face touching the
+  $-$ plate;  opposite in sign to the free charge on that same adjacent
+  plate, since each dipole's own $-$ end faces the $+$ plate (and vice
+  versa). As a result, 
+  the free charge on the plates is partially screened 
+  reducing $vb(E)$ inside the dielectric. Crucially, the
+  pillbox argument for $vb(D)$ is *unchanged*: it only encloses free
+  charge (the bound charge sits on the dielectric's surface, outside the
+  pillbox), so $D = sigma_f$ still holds. Only
+  $vb(E) = (vb(D) - vb(P)) \/ epsilon_0$ changes — for a linear
+  dielectric, $E = D \/ (epsilon_0 epsilon_r) = sigma_f \/ (epsilon_0
+  epsilon_r)$, smaller than the vacuum value by a factor $epsilon_r$.
+  #text(style: "italic", size: 9pt)[
+    Extra: which quantity actually changes depends on the rest of the
+    circuit — with the battery still connected ($V_0$ fixed), $E = V_0 \/
+    d$ stays the same and the battery supplies extra free charge so that
+    $D$ (and $sigma_f$) grow by $epsilon_r$; with the battery disconnected
+    ($Q$ fixed), $D$ stays the same and $E$ (and $V$) drop by $epsilon_r$.
+  ]
+
+  *3. Coil in vacuum.* By the same logic, the field fixed directly by the
+  *free* current is $vb(H)$, via Ampère's law, (iv) in @eq:maxwell-matter
+  (with $partial_t vb(D) = 0$ in the static case):
+  $ integral.cont_C vb(H) dot dd(vb(l)) = I_"f, enc". $
+  For a long solenoid this gives $H = n I$, *independent of the core
+  material* — the direct analogue of the pillbox argument for $vb(D)$. In
+  vacuum, $vb(B) = mu_0 vb(H)$.
+
+  *4. Coil with a material core.* Glass has no permanent atomic magnetic
+  moments (all electrons are paired), so — unlike the capacitor case —
+  nothing aligns with the field. Instead, the changing flux as the current
+  is switched on induces tiny orbital currents in the electron clouds that
+  *oppose* it (the atomic-scale analogue of Lenz's law): glass, like most
+  everyday materials, is weakly *diamagnetic*, with $vb(M)$ antiparallel to
+  $vb(H)$ and $chi_m$ of order $-10^(-5)$. As before, $vb(H) = n I$ is
+  unaffected by the core; only $vb(B) = mu_0 (vb(H) + vb(M))$ changes, by
+  about one part in $10^5$. The bound surface current
+  $vb(K)_b = vb(M) times vu(n)$ on the glass surface is the magnetic
+  analogue of the bound surface charge $sigma_b = vb(P) dot vu(n)$ from the
+  capacitor.
+
+  *5. From DC to AC.* Once the source is AC, every field becomes
+  time-dependent, and two new things happen. First, the changing
+  polarization in the capacitor drives a real polarization current,
+  $vb(J)_p = pdv(vb(P), t)$ (@eq:polarization-current), on top of the free
+  current. Second — and more importantly — the electric and magnetic
+  sectors, which were completely independent in the static examples above,
+  become *coupled*: a changing $vb(E)$ (through the $partial_t vb(D)$ term)
+  generates $vb(B)$, and a changing $vb(B)$ generates $vb(E)$ (Faraday's
+  law). This is exactly the interplay we study next: in Chapter 3 we will
+  see that this coupling between $vb(E)$ and $vb(B)$ gives rise to
+  propagating *electromagnetic waves*.
 ]
 

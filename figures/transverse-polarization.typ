@@ -43,14 +43,20 @@
       }
     }
 
-    // Polarization vector u-hat, drawn at the origin
+    // Polarization vector n-hat, drawn at the origin. Since n-hat points
+    // exactly along one of the coordinate axes, offset its label
+    // perpendicular to the arrow (not further along it) to avoid the axis.
     let u-tip = (ox + 0.9 * osc-dir.at(0), oy + 0.9 * osc-dir.at(1))
     line((ox, oy), u-tip, stroke: 1.4pt + rgb("#c0392b"), mark: (end: ">", fill: rgb("#c0392b"), size: 0.18))
-    content((u-tip.at(0) + 0.35 * osc-dir.at(0), u-tip.at(1) + 0.35 * osc-dir.at(1)), text(size: 9pt, fill: rgb("#c0392b"))[$vu(u)$])
+    let perp = (-osc-dir.at(1), osc-dir.at(0))
+    content(
+      (u-tip.at(0) + 0.15 * osc-dir.at(0) + 0.4 * perp.at(0), u-tip.at(1) + 0.15 * osc-dir.at(1) + 0.4 * perp.at(1)),
+      text(size: 9pt, fill: rgb("#c0392b"))[$vu(n)$],
+    )
 
     content((ox + z-len / 2, oy - 1.7), text(size: 9pt)[#u-label])
   }
 
-  panel((0, 0), (0, 1), $vu(u) = vu(x)$, rgb("#2980b9"))
-  panel((8.5, 0), (-0.6, -0.35), $vu(u) = vu(y)$, rgb("#8e44ad"))
+  panel((0, 0), (0, 1), $vu(n) = vu(x)$, rgb("#2980b9"))
+  panel((8.5, 0), (-0.6, -0.35), $vu(n) = vu(y)$, rgb("#8e44ad"))
 })

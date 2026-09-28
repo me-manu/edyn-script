@@ -17,9 +17,12 @@
   line((-5, 0), (5, 0), stroke: 0.6pt + gray)
   content((5.3, 0), text(size: 8pt, fill: gray)[$z$])
 
-  // A small (E, B, k) triad, drawn at "origin" pointing along "dir" (+1 or -1 along z)
-  let triad(origin, dir, ecolor, label, ey: 1) = {
+  // A small (E, B, k) triad, drawn at "origin" pointing along "dir" (+1 or -1 along z).
+  // `bflip` flips the B arrow by 180° (needed for the reflected wave, whose
+  // B amplitude carries an intrinsic minus sign — see the main text).
+  let triad(origin, dir, ecolor, label, ey: 1, bflip: false) = {
     let (ox, oy) = origin
+    let bsign = if bflip { -1 } else { 1 }
     // propagation arrow
     line((ox, oy), (ox + dir * 1.4, oy), stroke: 1pt + ecolor,
       mark: (end: ">", fill: ecolor, size: 0.15))
@@ -28,9 +31,9 @@
       mark: (end: ">", fill: ecolor, size: 0.15))
     content((ox, oy + 1.15 * ey), text(size: 8pt, fill: ecolor)[$vb(E)_#label$])
     // B arrow (along y, drawn diagonal for depth)
-    line((ox, oy), (ox - 0.55, oy - 0.35), stroke: 1pt + ecolor,
+    line((ox, oy), (ox + bsign * -0.55, oy + bsign * -0.35), stroke: 1pt + ecolor,
       mark: (end: ">", fill: ecolor, size: 0.15))
-    content((ox - 0.85, oy - 0.45), text(size: 8pt, fill: ecolor)[$vb(B)_#label$])
+    content((ox + bsign * -0.85, oy + bsign * -0.45), text(size: 8pt, fill: ecolor)[$vb(B)_#label$])
   }
 
   // Incident wave: medium 1, traveling in +z, below axis
@@ -38,7 +41,7 @@
   content((-3.6, -0.3), text(size: 8pt, fill: rgb("#27ae60"))[$e^(i(k_1 z - omega t))$])
 
   // Reflected wave: medium 1, traveling in -z, above axis
-  triad((-1.6, 1.2), -1, rgb("#e67e22"), [R], ey: 1)
+  triad((-1.6, 1.2), -1, rgb("#e67e22"), [R], ey: 1, bflip: true)
   content((-2.3, 1.6), text(size: 8pt, fill: rgb("#e67e22"))[$e^(i(-k_1 z - omega t))$])
 
   // Transmitted wave: medium 2, traveling in +z
