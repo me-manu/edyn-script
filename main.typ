@@ -105,4 +105,5 @@
 #include "chapters/02-maxwells-equations-in-matter.typ"
 #include "chapters/03-electromagnetic-waves.typ"
 #include "chapters/04-reflection-and-transmission.typ"
+#include "chapters/05-absorption-and-dispersion.typ"
 // ...
