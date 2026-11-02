@@ -36,11 +36,45 @@
 
 #set heading(numbering: "1.1")
 
-#set math.equation(numbering: numbering.with("(1)"), supplement: [Eq.])
+// Chapter-scoped numbering "X.n" for equations and figures, where X is the
+// chapter number and n resets to 1 at the start of each chapter.
+//
+// We can't just read `counter(heading)` from inside the equation/figure
+// numbering function: when that function is re-invoked to render a
+// *cross-reference* (`@eq:...`) elsewhere in the document, it resolves
+// relative to the citing location, not the original equation's location,
+// which silently produces the wrong chapter number. Instead, we encode the
+// chapter number directly into the counter value itself (chapter * 1000 +
+// n) when it's reset at each chapter heading, so the numbering function is
+// pure arithmetic on that single integer and needs no location lookups.
+#let chapter-number-parts(it) = (calc.quo(it, 1000), calc.rem(it, 1000))
+
+#let chapter-eq-numbering(it) = {
+  let (chapter, n) = chapter-number-parts(it)
+  "(" + str(chapter) + "." + str(n) + ")"
+}
+
+#let chapter-fig-numbering(it) = {
+  let (chapter, n) = chapter-number-parts(it)
+  str(chapter) + "." + str(n)
+}
+
+#set math.equation(numbering: chapter-eq-numbering, supplement: [Eq.])
+
+// Figures in this document are cetz drawings or included content, not
+// `image()` elements, so typst can't auto-infer a `kind` for them — and
+// without an explicit, uniform kind, `counter(figure.where(kind: ..))`
+// (what `figure()` actually numbers against) can't be reset per chapter.
+// Force one fixed kind for every figure so the reset below reaches it.
+#show figure: set figure(kind: "fig", supplement: [Figure])
+#set figure(numbering: chapter-fig-numbering)
 
 #show link: set text(fill: blue.darken(20%))
 
 #show heading.where(level: 1): it => {
+  let chapter = counter(heading).at(it.location()).first()
+  counter(math.equation).update(chapter * 1000)
+  counter(figure.where(kind: "fig")).update(chapter * 1000)
   pagebreak(weak: true)
   it
 }
@@ -106,4 +140,7 @@
 #include "chapters/03-electromagnetic-waves.typ"
 #include "chapters/04-reflection-and-transmission.typ"
 #include "chapters/05-absorption-and-dispersion.typ"
+#include "chapters/06-guided-waves.typ"
+#include "chapters/07-potentials.typ"
+#include "chapters/08-lienard-wiechert.typ"
 // ...

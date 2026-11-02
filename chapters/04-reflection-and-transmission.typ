@@ -370,31 +370,10 @@ Let's assume that the polarization of the incident wave is
 Then (i), the perpendicular component, becomes
 
 #block(breakable: false)[
-  #v(2.6em)
   $
-    epsilon_1 (mark(-, tag: #<norm-sign1>) E_(0I) sin theta_I + E_(0R) sin theta_R)
-    = epsilon_2 (mark(-, tag: #<norm-sign2>) E_(0T) sin theta_T),
+    epsilon_1 (underbrace(-E_(0I), #text(size: 9pt, fill: rgb("#2980b9"))[surface normal direction, \ $vb(E)_I dot vu(n) = -E_(0I) sin theta_I$]) sin theta_I + E_(0R) sin theta_R) \
+    = epsilon_2 (underbrace(-E_(0T), #text(size: 9pt, fill: rgb("#2980b9"))[same direction\ as incident wave]) sin theta_T),
   $
-
-  #{
-    annot-cetz(
-      (<norm-sign1>, <norm-sign2>),
-      cetz,
-      {
-        import cetz.draw: *
-        content((rel: (0, 0.9), to: "norm-sign1.north"), anchor: "south", name: "norm-sign1-label",
-          text(size: 9pt, fill: rgb("#2980b9"))[surface normal direction, $vb(E)_I dot vu(n) = -E_(0I) sin theta_I$])
-        line("norm-sign1-label.south", "norm-sign1.north", stroke: 0.6pt + rgb("#2980b9"),
-          mark: (end: ">", fill: rgb("#2980b9"), size: 0.15))
-
-        content((rel: (0, -0.9), to: "norm-sign2.south"), anchor: "north", name: "norm-sign2-label",
-          text(size: 9pt, fill: rgb("#2980b9"))[same direction as incident wave])
-        line("norm-sign2-label.north", "norm-sign2.south", stroke: 0.6pt + rgb("#2980b9"),
-          mark: (end: ">", fill: rgb("#2980b9"), size: 0.15))
-      },
-    )
-  }
-  #v(1.4em)
 ]
 
 using $theta_I = theta_R$ (law 2):
