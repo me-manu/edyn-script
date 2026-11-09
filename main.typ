@@ -143,4 +143,5 @@
 #include "chapters/06-guided-waves.typ"
 #include "chapters/07-potentials.typ"
 #include "chapters/08-lienard-wiechert.typ"
+#include "chapters/09-radiation.typ"
 // ...
